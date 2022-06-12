@@ -4,9 +4,9 @@ import books from "./books.js";
 const addBookHandler = (request, h) => {
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
 
-  // Validate property name
+  /* ------------------------ property name validation ----------------------- */
   if (!name) {
-    const messageText = "Mohon isi nama buku";
+    const messageText = "Silahkan isi nama buku";
 
     const response = h.response({
       status: "fail",
@@ -18,7 +18,7 @@ const addBookHandler = (request, h) => {
     return response;
   }
 
-  // Validate readPage & pageCount
+  /* -------------------------- readPage & pageCount validation -------------------------- */
   if (readPage > pageCount) {
     const messageText = "readPage tidak boleh lebih besar dari pageCount";
 
@@ -86,9 +86,9 @@ const addBookHandler = (request, h) => {
 const getAllBooksHandler = (request, h) => {
   const { reading, finished, name } = request.query;
 
-  // Search by reading status
-  // reading === 1 -> reading: true
-  // reading === 0 -> reading: false
+  /* ------------------------ Search by reading status ------------------------ */
+  /* --  reading === 1 -> reading: true && reading === 0 -> reading: false -- */
+
   if (reading !== undefined) {
     if (reading === "1") {
       const dataBook = [];
@@ -127,9 +127,9 @@ const getAllBooksHandler = (request, h) => {
     }
   }
 
-  // Search by finished status
-  // finished === 1 -> finished: true
-  // finished === 0 -> finished: false
+  /* ---------------------- Search by finished status ---------------------- */
+  /* -- finished === 1 -> finished: true && finished === 0 -> finished: false - */
+
   if (finished !== undefined) {
     if (finished === "1") {
       const dataBook = [];
@@ -168,8 +168,8 @@ const getAllBooksHandler = (request, h) => {
     }
   }
 
-  // Search by name
-  // books will check contains by name
+  /* ---------------------------- Search by name --------------------------- */
+
   if (name !== undefined) {
     const dataBook = [];
 
@@ -193,8 +193,6 @@ const getAllBooksHandler = (request, h) => {
     return response;
   }
 
-  // Default no query params wil be return all books
-  // Object will be formated as {id, name, publisher}
   const dataBook = books.map((book) => {
     const { id, publisher } = book;
 
@@ -242,7 +240,8 @@ const editBookByIdHandler = (request, h) => {
 
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
 
-  // Validate property name
+  /* ------------------------- property name validation ------------------------- */
+
   if (!name) {
     const messageText = "Mohon isi nama buku";
 
@@ -256,7 +255,7 @@ const editBookByIdHandler = (request, h) => {
     return response;
   }
 
-  // Validate readPage & pageCount
+  /* -------------------------- readPage & pageCount validation -------------------------- */
   if (readPage > pageCount) {
     const messageText = "readPage tidak boleh lebih besar dari pageCount";
 
