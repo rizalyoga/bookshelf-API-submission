@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import books from "./books.js";
 
+/* ---------------------------- ADD BOOK HANDLER --------------------------- */
+
 const addBookHandler = (request, h) => {
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
 
@@ -82,6 +84,8 @@ const addBookHandler = (request, h) => {
 
   return response;
 };
+
+/* -------------------------- GET ALL BOOKS HANDLER ------------------------- */
 
 const getAllBooksHandler = (request, h) => {
   const { reading, finished, name } = request.query;
@@ -209,6 +213,8 @@ const getAllBooksHandler = (request, h) => {
   return response;
 };
 
+/* ------------------------- GET BOOK BY ID HANDLER ------------------------- */
+
 const getBookByIdHandler = (request, h) => {
   const { bookId } = request.params;
 
@@ -234,6 +240,8 @@ const getBookByIdHandler = (request, h) => {
 
   return response;
 };
+
+/* -------------------------------- EDIT BOOK HANDLER ------------------------------- */
 
 const editBookByIdHandler = (request, h) => {
   const { bookId } = request.params;
@@ -305,6 +313,8 @@ const editBookByIdHandler = (request, h) => {
 
   return response;
 };
+
+/* ------------------------------- DELETE BOOK HANDLER ------------------------------ */
 
 const deleteBookByIdHandler = (request, h) => {
   const { bookId } = request.params;
